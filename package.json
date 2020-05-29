@@ -19,7 +19,8 @@
     "start": "node ./bin/www",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild":"npm install && npm run build"
   },
   "devDependencies": {
     "bootstrap": "^3.3.7"

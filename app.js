@@ -4,8 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var path = require('path');
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost/mern-crud', { useMongoClient: true, promiseLibrary: require('bluebird') })
+mongoose.connect(process.env.MONGOBD_URI || 'mongodb://localhost/mern-crud', { useMongoClient: true, promiseLibrary: require('bluebird') })
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 
@@ -36,5 +37,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+if (process.env.NODE_ENV === 'production'){
+  app.use(express.static('./build'));
+  app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'build','index.html'));
+  })
+}
 
 module.exports = app;
