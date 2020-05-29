@@ -47,7 +47,7 @@ class Create extends Component {
             <h4><Link to="/"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Book List</Link></h4>
             <form onSubmit={this.onSubmit}>
               <div class="form-group">
-                <label for="isbn">ISBN:</label>
+                <label for="isbn">ISBN Label:</label>
                 <input type="text" class="form-control" name="isbn" value={isbn} onChange={this.onChange} placeholder="ISBN" />
               </div>
               <div class="form-group">
